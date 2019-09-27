@@ -7,8 +7,7 @@ numbers = []
 sumup = 0
 
 # 3
-animals = {}
-targets = ['cat', 'dog', 'zebra', 'monkey']
+animals = {'cat': 0, 'dog': 0, 'zebra': 0, 'monkey': 0}
 
 rf = 'assn1_input.txt'
 af = 'animals.out'
@@ -27,24 +26,21 @@ with open(rf) as input_file, open(ff, 'w+') as fixed_file, open(af, 'w+') as ani
 
         # 1
         if len(line) == 1 and line[0].isnumeric():
-            numbers.append(line[0])
+            numbers.append(int(line[0]))
             sumup += int(line[0])
 
         # 3
         else:
             for word in line:
-                for tar in targets:
-                    if word != tar:
-                        continue
-                    if animals.get(word):
-                        animals[word] += 1
-                    else:
-                        animals[word] = 1
+                if animals.get(word) != None:
+                    animals[word] += 1
 
     # 1
     sumup = math.sqrt(sumup)
+    numbers.sort()
+    numbers.reverse()
     animals_file.write(str(numbers) + '\n')
-    animals_file.write('%2e' % sumup + '\n')
+    animals_file.write('%2.2e' % sumup + '\n')
 
     # 3
     animals_file.write(str(animals) + '\n')
