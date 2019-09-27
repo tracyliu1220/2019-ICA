@@ -8,6 +8,7 @@ sumup = 0
 
 # 3
 animals = {}
+targets = ['cat', 'dog', 'zebra', 'monkey']
 
 rf = 'assn1_input.txt'
 af = 'animals.out'
@@ -19,7 +20,7 @@ with open(rf) as input_file, open(ff, 'w+') as fixed_file, open(af, 'w+') as ani
     for line in data:
 
         # 2
-        line.replace('zerba', 'zebra')
+        line = line.replace('zerba', 'zebra')
         fixed_file.write(line)
 
         line = line.strip().split(';')
@@ -32,10 +33,13 @@ with open(rf) as input_file, open(ff, 'w+') as fixed_file, open(af, 'w+') as ani
         # 3
         else:
             for word in line:
-                if animals.get(word):
-                    animals[word] += 1
-                else:
-                    animals[word] = 1
+                for tar in targets:
+                    if word != tar:
+                        continue
+                    if animals.get(word):
+                        animals[word] += 1
+                    else:
+                        animals[word] = 1
 
     # 1
     sumup = math.sqrt(sumup)
