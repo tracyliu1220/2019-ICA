@@ -20,32 +20,32 @@ class Point:
 
     #move the point by x,y
     def moveBy(self, move=[0, 0]):
-        try:
+        # try:
             if self.dim != len(move):
                 raise ValueError
             self.coords = list(map(add, self.coords, move))
-        except ValueError:
-            self.errMsg('dim')
+        # except ValueError:
+        #     self.errMsg('dim')
 
     #move the point to x,y
     def moveTo(self, move=[0, 0]):
-        try:
+        # try:
             if self.dim != len(move):
                 raise ValueError
             self.coords = move
-        except ValueError:
-            self.errMsg('dim')
+        # except ValueError:
+        #     self.errMsg('dim')
 
     #calculate Hamming distance between two points
     def distanceTo(self, p2):
-        try:
+        # try:
             if self.dim != len(p2.coords):
                 raise ValueError
             def getDistance(a, b):
                 return abs(a - b)
             return reduce(add, list(map(getDistance, self.coords, p2.coords)))
-        except ValueError:
-            self.errMsg('dim')
+        # except ValueError:
+        #     self.errMsg('dim')
 
     # __str__ generates string representation of objects
     def __str__(self):
@@ -63,31 +63,31 @@ class Point:
 
     # operator
     def __add__(self, p2):
-        try:
+        # try:
             if self.dim != len(p2.coords):
                 raise ValueError
             return Point(list(map(add, self.coords, p2.coords)))
-        except ValueError:
-            self.errMsg('dim')
-        return
+        # except ValueError:
+        #     self.errMsg('dim')
+        # return
 
     def __sub__(self, p2):
-        try:
+        # try:
             if self.dim != len(p2.coords):
                 raise ValueError
             return Point(list(map(sub, self.coords, p2.coords)))
-        except ValueError:
-            self.errMsg('dim')
-        return
+        # except ValueError:
+        #     self.errMsg('dim')
+        # return
 
     def __gt__(self, p2):
-        try:
+        # try:
             if self.dim != len(p2.coords):
                 raise ValueError
             return reduce(and_, list(map(gt, self.coords, p2.coords)))
-        except ValueError:
-            self.errMsg('dim')
-        return
+        # except ValueError:
+        #     self.errMsg('dim')
+        # return
 
     def __mul__(self, scalar):
         return Point(list(map(lambda x: x * scalar, self.coords)))
@@ -96,17 +96,17 @@ class Point:
         return self.__mul__(scalar)
 
     def __eq__(self, p2):
-        try:
+        # try:
             if self.dim != len(p2.coords):
                 raise ValueError
             return reduce(and_, list(map(eq, self.coords, p2.coords)))
-        except ValueError:
-            self.errMsg('dim')
-        return
+        # except ValueError:
+        #     self.errMsg('dim')
+        # return
 
     @classmethod
     def centroid(cls, pList=[]):
-        try:
+        # try:
             if len(pList) == 0:
                 raise RuntimeError
             dim = len(pList[0])
@@ -117,8 +117,8 @@ class Point:
             cls = reduce(add, pList)
             cls = cls * (1 / n)
             return cls
-        except RuntimeError:
-            cls.errMsg('plist')
-        except ValueError:
-            cls.errMsg('dim')
+        # except RuntimeError:
+        #     cls.errMsg('plist')
+        # except ValueError:
+        #     cls.errMsg('dim')
 
